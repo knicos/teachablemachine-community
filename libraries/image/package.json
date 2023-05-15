@@ -6,10 +6,10 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "npm run make-version && tsc && npm run build-bundle",
-    "build-bundle": "webpack --reporter=basic --mode=production",
+    "build-bundle": "webpack --mode=production",
     "build-clean": "rm -rf ./dist && npm run build",
     "dev": "concurrently \"npm run dev-lite\" \"npm run test-watch\"",
-    "dev-lite": "webpack --watch --reporter=basic --mode=development",
+    "dev-lite": "webpack --watch --mode=development",
     "lint": "tslint -p . -t verbose",
     "publish-local": "npm run build-clean && yalc publish",
     "make-version": "node scripts/make-version.js",
@@ -25,37 +25,37 @@
     "directory": "image"
   },
   "peerDependencies": {
-    "@tensorflow/tfjs": "1.3.1"
+    "@tensorflow/tfjs": "3.21.0"
   },
   "devDependencies": {
-    "@tensorflow/tfjs": "1.3.1",
-    "@types/chai": "^4.2.3",
-    "@types/cli-table": "^0.3.0",
+    "@tensorflow/tfjs": "3.21.0",
+    "@types/chai": "^4.3.5",
+    "@types/cli-table": "^0.3.1",
     "@types/mocha": "^5.2.7",
-    "chai": "^4.2.0",
-    "cli-table": "^0.3.1",
+    "chai": "^4.3.7",
+    "cli-table": "^0.3.11",
     "concurrently": "^6.2.1",
     "console.table": "^0.10.0",
-    "karma": "^6.3.4",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-firefox-launcher": "^1.2.0",
-    "karma-mocha": "^1.3.0",
+    "karma": "^6.4.2",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-firefox-launcher": "^2.1.2",
+    "karma-mocha": "^2.0.1",
     "karma-safari-launcher": "^1.0.0",
-    "karma-typescript": "^5.5.1",
+    "karma-typescript": "^5.5.4",
+    "karma-typescript-es6-transform": "^5.5.4",
     "lodash.clonedeep": "^4.5.0",
-    "mocha": "^6.1.4",
-    "puppeteer": "^1.20.0",
-    "source-map-loader": "^0.2.4",
-    "terser-webpack-plugin": "^2.1.0",
+    "mocha": "^10.2.0",
+    "source-map-loader": "^4.0.1",
+    "terser-webpack-plugin": "^5.3.8",
     "ts-loader": "^6.1.2",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3",
-    "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9",
-    "yalc": "^1.0.0-pre.34"
+    "typescript": "^5.0.4",
+    "webpack": "^5.82.1",
+    "webpack-cli": "^5.1.1",
+    "yalc": "^1.0.0-pre.53"
   },
   "dependencies": {
     "autobind-decorator": "^2.4.0",
-    "seedrandom": "^2.4.3"
+    "seedrandom": "^3.0.5"
   }
 }

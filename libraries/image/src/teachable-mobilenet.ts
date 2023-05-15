@@ -403,7 +403,7 @@ export class TeachableMobileNet extends CustomMobileNet {
     }
 
     public stopTraining() {  
-        const promise = new Promise((resolve, reject) => {
+        const promise = new Promise<void>((resolve, reject) => {
             this.trainingModel.stopTraining = true;
             this.__stopTrainingResolve = resolve;
             // this.__stopTrainingReject = reject;

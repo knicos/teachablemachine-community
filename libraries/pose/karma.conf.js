@@ -1,4 +1,4 @@
-process.env.CHROME_BIN = require('puppeteer').executablePath();
+// process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function(config) {
   config.set({
@@ -6,14 +6,18 @@ module.exports = function(config) {
     files: [
       {pattern: 'src/**/*.ts'},
       {pattern: 'test/**/*.ts'},
-      {pattern: 'test/**/*.html'},
-      {pattern: 'dist/**/*.min.js'}
+      {pattern: 'test/**/*.html'}
     ],
     preprocessors: {
       '**/*.ts': ['karma-typescript'],  // *.tsx for React Jsx
     },
     karmaTypescriptConfig: {
       tsconfig: 'tsconfig.json',
+      bundlerOptions: {
+        transforms: [
+            require("karma-typescript-es6-transform")()
+        ]
+    },
       // we include this here to keep our test files separate,
       // but not include tests in normal builds
       include: [ 'test/**/*.ts'],

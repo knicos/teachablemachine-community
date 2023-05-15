@@ -68,13 +68,13 @@ module.exports = function(opts, argv) {
     if (argv.mode === 'production'){
         config.output.path = resolve(`${outputPath}`);
         //turn off source maps
-        config.devtool = 'none';
+        config.devtool = false;
 
         config.optimization = {
             minimizer: [
                 new TerserPlugin({
                     parallel: true,
-                    cache: './.terser_build_cache',
+                    //cache: './.terser_build_cache',
                     //exclude: /transpiledLibs/,
                     terserOptions: {
                       warnings: false,

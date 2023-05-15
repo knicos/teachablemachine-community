@@ -104,7 +104,7 @@ async function createDatasets(
 	loadFunction: Function
 ) {
 	// fill in an array with unique numbers
-	let listNumbers = [];
+	let listNumbers: number[] = [];
 	for (let i = 0; i < trainSize + testSize; ++i) listNumbers[i] = i;
 	listNumbers = fisherYates(listNumbers, seed); // shuffle
 
@@ -197,12 +197,12 @@ async function testModel(
 				batchSize: 16
 			},
 			{
-				onEpochBegin: async (epoch: number, logs: tf.Logs) => {
+				onEpochBegin: async (epoch: number, logs?: tf.Logs) => {
 					if (showEpochResults) {
 						console.log("Epoch: ", epoch);
 					}
 				},
-				onEpochEnd: async (epoch: number, log: tf.Logs) => {
+				onEpochEnd: async (epoch: number, log?: tf.Logs) => {
 					if (showEpochResults) {
 						console.log(log);
 					}
@@ -211,7 +211,7 @@ async function testModel(
 							console.log("Stopped training early");
 						});
 					}
-					logs.push(log);
+					if (log) logs.push(log);
 				}
 			}
 		);
@@ -293,13 +293,15 @@ async function testMobilenet(dataset_url: string, version: number, loadFunction:
 
 	const earlyStopEpochs = earlyStop ? 5 : EPOCHS;
 
+    let teachableMobileNet;
+	let imageSize;
+    let lastEpoch;
+
 	for (let a of VALID_ALPHAS) {
 		const lineStart = "\n//====================================";
 		const lineEnd = "====================================//\n\n";
 		console.log(lineStart);
 		// 3. Test data on the model
-		let teachableMobileNet;
-		let imageSize;
 		if (grayscale) {
 			imageSize = 96;
 			teachableMobileNet = await tm.createTeachable(
@@ -315,7 +317,7 @@ async function testMobilenet(dataset_url: string, version: number, loadFunction:
 			);
 		}
 		
-		const lastEpoch = await testModel(
+		lastEpoch = await testModel(
 			teachableMobileNet,
 			a,
 			classLabels,
@@ -332,8 +334,9 @@ async function testMobilenet(dataset_url: string, version: number, loadFunction:
 		// assert.isTrue(accuracyV2 > 0.7);
 		console.log(lineEnd);
 
-		return { model: teachableMobileNet, lastEpoch };
+		break;
 	}
+    return { model: teachableMobileNet, lastEpoch };
 }
 
 // Weird workaround...

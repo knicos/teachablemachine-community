@@ -357,7 +357,7 @@ export class TeachablePoseNet extends CustomPoseNet {
     }
 
     public stopTraining() {  
-        const promise = new Promise((resolve, reject) => {
+        const promise = new Promise<void>((resolve, reject) => {
             this.model.stopTraining = true;
             this.__stopTrainingResolve = resolve;
             // this.__stopTrainingReject = reject;

@@ -150,13 +150,13 @@ async function testPosenet(
                 batchSize: 16
             },
             {
-                onEpochBegin: async (epoch: number, logs: tf.Logs) => {
+                onEpochBegin: async (epoch: number, logs?: tf.Logs) => {
                     if (showEpochResults) {
                         console.log("Epoch: ", epoch);
                     }
                 },
-                onEpochEnd: async (epoch: number, log: tf.Logs) => {
-                    logs.push(log);
+                onEpochEnd: async (epoch: number, log?: tf.Logs) => {
+                    if (log) logs.push(log);
 
                     if (earlyStopEpoch !== epochs && earlyStopEpoch === epoch) {
 						poseModel.stopTraining().then(() => {
