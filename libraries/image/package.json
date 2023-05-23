@@ -16,7 +16,8 @@
     "update-release": "npm run lint && npm run build-clean",
     "test": "karma start --single-run",
     "test-watch": "karma start",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "prepare": "npm run build"
   },
   "license": "Apache-2.0",
   "repository": {
