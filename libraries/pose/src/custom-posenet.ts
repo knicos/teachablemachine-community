@@ -336,7 +336,8 @@ export async function loadPoseNet(config: Partial<PoseModelSettings> = {}) {
 		architecture: config.posenet.architecture,
 		outputStride: config.posenet.outputStride,
 		inputResolution: config.posenet.inputResolution,
-		multiplier: config.posenet.multiplier
+		multiplier: config.posenet.multiplier,
+        modelUrl: config.posenet.modelUrl,
 	});
 	return posenetModel;
 }
