@@ -109,13 +109,10 @@ const parseModelOptions = (options?: ModelOptions) => {
             options.alpha = isAlphaValid(options.version, options.alpha);
 
             console.log(`Loading mobilenet ${options.version} and alpha ${options.alpha}`);
-            // exception is alpha of 1 can only be 1.0
-            let alphaString = options.alpha.toFixed(2);
-            if (alphaString === "1.00") { alphaString = "1.0"; }
 
             return [
                 // tslint:disable-next-line:max-line-length        
-                `https://storage.googleapis.com/tfjs-models/tfjs/mobilenet_v1_${alphaString}_${IMAGE_SIZE}/model.json`,
+                `https://tmstore.blob.core.windows.net/models/mobilenet_v1_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
                 DEFAULT_TRAINING_LAYER_V1
             ];
         }
@@ -126,7 +123,7 @@ const parseModelOptions = (options?: ModelOptions) => {
             console.log(`Loading mobilenet ${options.version} and alpha ${options.alpha}`);
             return [
                 // tslint:disable-next-line:max-line-length        
-                `https://storage.googleapis.com/teachable-machine-models/mobilenet_v2_weights_tf_dim_ordering_tf_kernels_${options.alpha.toFixed(2)}_${IMAGE_SIZE}_no_top/model.json`,
+                `https://tmstore.blob.core.windows.net/models/mobilenet_v2_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
                 DEFAULT_TRAINING_LAYER_V2
             ];
         } else {
