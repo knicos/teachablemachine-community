@@ -102,6 +102,7 @@ const fillConfig = (config: Partial<PoseModelSettings> = {}): PoseModelSettings 
 	config.posenet.outputStride = config.posenet.outputStride || 16;
 	config.posenet.inputResolution = config.posenet.inputResolution || 257;
 	config.posenet.multiplier = config.posenet.multiplier || 0.75;
+    config.posenet.modelUrl = 'https://tmstore.blob.core.windows.net/models/posenet_075/model-stride16.json';
 
 	return config as PoseModelSettings;
 };
