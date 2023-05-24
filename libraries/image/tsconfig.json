@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "rootDir": "./",
         "declaration": true,
         "experimentalDecorators": true,
         "outDir": "./dist",
