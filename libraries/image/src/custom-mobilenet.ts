@@ -28,6 +28,7 @@ const DEFAULT_TRAINING_LAYER_V2 = "out_relu";
 const DEFAULT_ALPHA_V1 = 0.25;
 const DEFAULT_ALPHA_V2 = 0.35;
 export const IMAGE_SIZE = 224;
+const MODEL_BASE_URL = 'https://tmstore.blob.core.windows.net/models';
 
 /**
  * the metadata to describe the model's creation,
@@ -52,6 +53,7 @@ export interface ModelOptions {
     checkpointUrl?: string;
     alpha?: number;
     trainingLayer?: string;
+    modelBaseUrl?: string;
 }
 
 /**
@@ -112,7 +114,7 @@ const parseModelOptions = (options?: ModelOptions) => {
 
             return [
                 // tslint:disable-next-line:max-line-length        
-                `https://tmstore.blob.core.windows.net/models/mobilenet_v1_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
+                `${options.modelBaseUrl || MODEL_BASE_URL}/mobilenet_v1_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
                 DEFAULT_TRAINING_LAYER_V1
             ];
         }
@@ -123,7 +125,7 @@ const parseModelOptions = (options?: ModelOptions) => {
             console.log(`Loading mobilenet ${options.version} and alpha ${options.alpha}`);
             return [
                 // tslint:disable-next-line:max-line-length        
-                `https://tmstore.blob.core.windows.net/models/mobilenet_v2_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
+                `${options.modelBaseUrl || MODEL_BASE_URL}/mobilenet_v2_${options.alpha.toFixed(2).replace('.', '')}_${IMAGE_SIZE}/model.json`,
                 DEFAULT_TRAINING_LAYER_V2
             ];
         } else {
